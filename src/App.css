@@ -696,6 +696,18 @@ main section {
   opacity: 0.85;
 }
 
+.contact__submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.contact__error {
+  color: #ff6b6b;
+  font-size: 13px;
+  line-height: 145%;
+  margin: 0;
+}
+
 .contact__success {
   color: var(--accent);
   font-size: 15px;

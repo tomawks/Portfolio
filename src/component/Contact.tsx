@@ -2,20 +2,46 @@ import { useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
+// Clé publique Web3Forms : elle peut rester dans le code sans risque
+const WEB3FORMS_KEY = '494ef3fd-c4cf-4056-a0b0-fe807471c194'
+
+type Status = 'idle' | 'sending' | 'success' | 'error'
+
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
 
-const handleChange = (
-  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-) => {
-  setFormData({ ...formData, [e.target.name]: e.target.value })
-}
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
-const handleSubmit = (e: FormEvent) => {
-  e.preventDefault()
-  setSubmitted(true)
-}
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio — nouveau message de ${formData.name}`,
+          from_name: 'Portfolio Thomas Coelho',
+          ...formData,
+        }),
+      })
+      const result = await response.json()
+
+      if (result.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <section id="contact" className="contact">
@@ -50,7 +76,7 @@ const handleSubmit = (e: FormEvent) => {
         </div>
 
         <form className="contact__form" onSubmit={handleSubmit}>
-          {submitted ? (
+          {status === 'success' ? (
             <p className="contact__success">Merci pour votre message, je reviens vers vous rapidement !</p>
           ) : (
             <>
@@ -87,8 +113,13 @@ const handleSubmit = (e: FormEvent) => {
                   required
                 />
               </div>
-              <button type="submit" className="contact__submit">
-                Envoyer
+              {status === 'error' && (
+                <p className="contact__error">
+                  L'envoi a échoué. Réessayez ou écrivez-moi directement à thomas.coelho@epitech.eu.
+                </p>
+              )}
+              <button type="submit" className="contact__submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Envoi…' : 'Envoyer'}
               </button>
             </>
           )}
