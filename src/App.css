@@ -193,6 +193,13 @@ header section {
   background: #28c840;
 }
 
+.mac-window__note {
+  display: block;
+  margin-top: 8px;
+  color: #8d79e8;
+  font-size: 0.9em;
+}
+
 .mac-window__content {
   padding: 16px;
   margin: 0;
@@ -348,23 +355,18 @@ main section {
 }
 
 .project__grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.project__grid > div {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
 .project__card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: #1e1e1e;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 20px;
+  overflow: hidden;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -372,6 +374,42 @@ main section {
 .project__card:hover {
   border-color: var(--accent);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+}
+
+.project__cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+.project__cover--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #470fc0 0%, #aa3bff 55%, #16171d 100%);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--heading);
+  font-size: 64px;
+  font-weight: 600;
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+
+.project__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: #8d79e8;
+  font-size: 12px;
+  margin-bottom: 6px;
 }
 
 .project__name {
@@ -385,7 +423,7 @@ main section {
   color: var(--text);
   font-size: 14px;
   line-height: 145%;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 }
 
 .project__stack {
@@ -403,23 +441,26 @@ main section {
   white-space: nowrap;
 }
 
+.project__more {
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--text-h);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 @media (min-width: 768px) {
   .project {
     padding: 80px 40px;
   }
 
   .project__grid {
-    flex-direction: row;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 
-  .project__grid > div {
-    flex: 1;
-    gap: 24px;
-  }
-
-  .project__card {
-    padding: 28px;
+  .project__body {
+    padding: 24px 28px 28px;
   }
 
   .project__name {
@@ -684,5 +725,126 @@ main section {
   .contact {
     max-width: 900px;
     margin: 0 auto;
+  }
+}
+/* ==========================================================================
+   Page détail d'un projet
+   ========================================================================== */
+
+.detail {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px 80px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.detail__back:hover {
+  color: var(--text-h);
+}
+
+.detail__header {
+  margin-bottom: 28px;
+}
+
+.detail__title {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: 36px;
+  margin: 0 0 8px;
+}
+
+.detail__tagline {
+  color: var(--text);
+  font-size: 17px;
+  line-height: 150%;
+  margin: 0 0 16px;
+}
+
+.detail__stack {
+  margin-bottom: 20px;
+}
+
+.detail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.detail__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.detail__links a:hover {
+  opacity: 0.85;
+}
+
+.detail > .project__cover {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 40px;
+}
+
+.detail__section {
+  /* annule la règle générique "main section" (plein écran, centré) */
+  display: block;
+  min-height: auto;
+  padding: 0;
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.detail__section h2 {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: 22px;
+  margin: 0 0 12px;
+}
+
+.detail__section p,
+.detail__section li {
+  color: var(--text);
+  font-size: 16px;
+  line-height: 160%;
+}
+
+.detail__section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.detail__section li {
+  margin-bottom: 6px;
+}
+
+@media (min-width: 768px) {
+  .detail {
+    padding: 48px 40px 100px;
+  }
+
+  .detail__title {
+    font-size: 48px;
   }
 }

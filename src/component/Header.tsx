@@ -8,8 +8,8 @@ function Header() {
 
   const links = [
     { id: 'profile', label: 'Profile' },
+    { id: 'project', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
-    { id: 'project', label: 'Project' },
     { id: 'experience', label: 'Experience' },
     { id: 'contact', label: 'Contact' },
   ]
@@ -87,7 +87,8 @@ function Header() {
             <span className="mac-window__dot mac-window__dot--green"></span>
         </div>
         <p className="mac-window__content">
-          Ancien élève de BTS MCO, actuellement en Master of Science à EPITECH, je recherche une alternance pour développer mes compétences et contribuer, avec polyvalence et réactivité, aux projets d'une entreprise.<br></br> Le rythme est de 2 semaines école, 4 semaines entreprise. L'alternance commencerais à partir de janvier 2027
+          Développeur en formation à EPITECH (Master of Science), je conçois des applications web en React, TypeScript et PHP. Issu d'un BTS MCO, j'apporte aussi un vrai sens du client et du terrain.<br></br>
+          <span className="mac-window__note">Je recherche une alternance à partir de janvier 2027 — rythme 2 semaines école / 4 semaines entreprise.</span>
        </p>
       </div>
       </section>
