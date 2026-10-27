@@ -44,26 +44,28 @@ export const projects: ProjectItem[] = [
     ],
   },
   {
-    slug: 'portfolio',
-    name: 'Portfolio',
-    tagline: 'Ce site : mon portfolio développé en React et TypeScript.',
+    slug: 'digital-resume',
+    name: 'Digital Resume',
+    tagline: 'Mon CV en ligne, première version de ce site, développé en React et TypeScript.',
     year: '2026',
     team: 'Projet solo — EPITECH',
-    stack: ['React', 'TypeScript', 'Vite', 'React Router', 'CSS'],
-    github: 'https://github.com/tomawks/Portfolio',
+    stack: ['React', 'TypeScript', 'Vite', 'CSS'],
+    image: '/digital-resume.jpg',
+    // lien vers la version d'origine dans l'historique Git
+    github: 'https://github.com/tomawks/Portfolio/tree/af198f4',
     context:
-      "Présenter mon parcours et mes projets de façon plus concrète qu'un CV papier, dans le cadre de ma recherche d'alternance.",
+      "Transformer mon CV papier en site web, dans le cadre de mon MSc à EPITECH, pour présenter mon parcours, mes compétences et mes expériences de façon plus vivante.",
     role: [
-      'Conception et intégration de toute l’interface, responsive mobile → desktop.',
-      'Navigation animée qui suit la section visible (IntersectionObserver).',
-      'Pages de détail par projet avec React Router, alimentées par un seul fichier de données.',
+      'Conception et intégration de toute l’interface : profil, compétences, projets, expériences et contact.',
+      'Navigation animée qui suit la section visible pendant le scroll (IntersectionObserver).',
+      'Mise en page responsive mobile → tablette → desktop et thème sombre.',
     ],
     challenges: [
-      'Faire suivre la “pilule” de navigation à la section affichée pendant le scroll, sans librairie.',
+      'Faire glisser la “pilule” de navigation sous la section affichée, sans librairie : calcul de la position et de la largeur du lien actif en React.',
     ],
     learnings: [
       'Structurer une app React en composants réutilisables et typés avec TypeScript.',
-      'Gérer le routage côté client et le scroll vers les ancres.',
+      'Gérer le responsive avec des media queries mobile-first.',
     ],
   },
 ]

@@ -1,112 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ==========================================================================
+   Couleurs et polices
+   Ambiance "carnet d'ingénieur" : papier crème, encre noire, stylo bleu.
+   ========================================================================== */
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e7e4;
-  --accent: #aa3bff;
+  --paper: #f2eee3; /* fond de page */
+  --paper-2: #faf8f2; /* fond des cartes */
+  --ink: #1a1815; /* texte principal */
+  --muted: #6b645a; /* texte secondaire */
+  --rule: #d6cfbf; /* traits et bordures */
+  --grid: rgba(26, 24, 21, 0.05); /* quadrillage du fond */
+  --accent: #2442d6; /* bleu stylo */
+  --accent-ink: #ffffff; /* texte posé sur l'accent */
 
-  --sans: 'Inter', 'Segoe UI', Roboto, sans-serif;
-  --heading: 'Poppins', system-ui, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  font: 16px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  background: url('/background_abstract.jpg') center/cover no-repeat fixed;  color: var(--text);
+  --nav-height: 56px;
+
+  color-scheme: light;
+  font: 16px/1.6 var(--sans);
+  color: var(--ink);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Tablette et plus */
-@media (min-width: 768px) {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141311;
+    --paper-2: #1c1a17;
+    --ink: #ece6d8;
+    --muted: #9a9284;
+    --rule: #34312b;
+    --grid: rgba(236, 230, 216, 0.035);
+    --accent: #8c9dff;
+    --accent-ink: #141311;
+    color-scheme: dark;
+  }
+}
+
+@media (min-width: 1024px) {
   :root {
     font-size: 17px;
   }
 }
 
-/* PC et plus */
-@media (min-width: 1024px) {
-  :root {
-    font-size: 18px;
-  }
-}
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #a4af9c;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --accent: #470fc0f9;
-  }
-}
-
-#root {
-  width: 100%;
-  max-width: 1126px;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
 }
 
 body {
   margin: 0;
+  background-color: var(--paper);
+  /* quadrillage de papier millimétré, très discret */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-ul {
+#root {
+  width: 100%;
+  min-height: 100svh;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--ink);
 }
 
 h1,
 h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 32px;
-  letter-spacing: -0.96px;
-  margin: 20px 0;
-}
-
-@media (min-width: 768px) {
-  h1 {
-    font-size: 44px;
-    letter-spacing: -1.32px;
-    margin: 26px 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 56px;
-    letter-spacing: -1.68px;
-    margin: 32px 0;
-  }
-}
-
-h2 {
-  font-size: 20px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-}
-
-@media (min-width: 1024px) {
-  h2 {
-    font-size: 24px;
-  }
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 
 p {
   margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }

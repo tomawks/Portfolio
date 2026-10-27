@@ -6,13 +6,9 @@ export function ProjectCover({ project }: { project: ProjectItem }) {
   if (project.image) {
     return <img src={project.image} alt={`Aperçu de ${project.name}`} className="project__cover" />
   }
-  // Pas encore de capture : on affiche un visuel avec l'initiale
-  return (
-    <div className="project__cover project__cover--placeholder" aria-hidden="true">
-      {project.name.charAt(0)}
-    </div>
-  )
-}
+  // Pas d'image : on n'affiche rien
+  return null
+} 
 
 function Project() {
   return (
