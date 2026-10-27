@@ -88,7 +88,7 @@ function Header() {
         </div>
         <p className="mac-window__content">
           Développeur en formation à EPITECH (Master of Science), je conçois des applications web en React, TypeScript et PHP. Issu d'un BTS MCO, j'apporte aussi un vrai sens du client et du terrain.<br></br>
-          <span className="mac-window__note">Je recherche une alternance à partir de janvier 2027 — rythme 2 semaines école / 4 semaines entreprise.</span>
+          <span className="mac-window__note">Je recherche une alternance à partir de janvier 2027<br></br> rythme 2 semaines école / 4 semaines entreprise.</span>
        </p>
       </div>
       </section>
